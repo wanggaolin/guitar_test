@@ -10,18 +10,16 @@ import (
 )
 
 var (
-	mod_debug                 string = "debug"
-	flag_video_scan_directory string // 扫描目录
-	GoVersion                 string
-	ReleaseTime               string
-	Auchar                    string = ""
-	AppVersion                string = "guitar-tools/0.1"
-	run_args                  *vender.Body_args
+	GoVersion   string
+	ReleaseTime string
+	Auchar      string = ""
+	AppVersion  string = "guitar-tools/0.2"
+	run_args    *vender.Body_args
 )
 
 var rootCmd = &cobra.Command{
-	Use:   "guitar-tools",
-	Short: "guitar tools",
+	Use:   "guitar",
+	Short: "guitar theory problem quiz",
 	Run: func(cmd *cobra.Command, args []string) {
 		if run_args.Version {
 			w.Show_version(GoVersion, Auchar, AppVersion)

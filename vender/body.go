@@ -26,6 +26,7 @@ type guitar struct {
 	DATA_CHORD_SCALE map[string]Body_Chord_Scale   //和弦音阶组成
 	DATA_CHORD_EMPTY map[string]string             //空弦音
 	DATA_QUERY       string                        //上一个问题
+	NUMBER           int64                         //上一个问题
 }
 
 type Body_args struct {

@@ -29,6 +29,7 @@ func (ch *guitar) show_query(args *Body_args, items Body_query) {
 
 func (ch *guitar) Main(args *Body_args) {
 	queryData := ch.query()
+	ch.NUMBER = 0
 	for {
 		for _, items := range queryData {
 			rand.Seed(time.Now().UnixNano())
