@@ -20,6 +20,7 @@ func (ch *guitar) answer_print(query string, answer string) {
 }
 
 func (ch *guitar) _add_tips(query string) string {
+	ch.DATA_QUERY = append(ch.DATA_QUERY, query)
 	ch.NUMBER = ch.NUMBER + 1
 	tips := fmt.Sprintf("第%d题: ", ch.NUMBER)
 	query = tips + query

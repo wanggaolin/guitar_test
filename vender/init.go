@@ -10,7 +10,6 @@ func init() {
 	_init_chord_level() // 初始化和弦级数
 	_init_chord_scale() // 初始化和弦音阶组成
 	_init_chord_empty() // 初始化空弦音
-	Guitar.DATA_QUERY = "empty"
 }
 
 // 初始化和弦音阶

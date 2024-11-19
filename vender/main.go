@@ -9,7 +9,6 @@ import (
 // email: brach@lssin.com
 
 func (ch *guitar) show_query(args *Body_args, items Body_query) {
-	ch.DATA_QUERY = items.Query
 	if items.Type == QUERY_SCALE && args.Chord_Scale == true { // 和弦构成音
 		ch.chord_scanle_verfy(items.Query, items.Answer.(Body_Chord_Scale))
 	} else if items.Type == QUERY_SCALE_X && args.Chord_Scale == true { // 和弦构成音
@@ -26,6 +25,25 @@ func (ch *guitar) show_query(args *Body_args, items Body_query) {
 		}
 	}
 }
+func (ch *guitar) is_repetition(x string) bool {
+	l := len(ch.DATA_QUERY)
+	if l == 0 {
+		return false
+	} else if l < 3 {
+		for _, items := range ch.DATA_QUERY {
+			if items == x {
+				return true
+			}
+		}
+	} else {
+		for _, items := range ch.DATA_QUERY[l-3:] {
+			if items == x {
+				return true
+			}
+		}
+	}
+	return false
+}
 
 func (ch *guitar) Main(args *Body_args) {
 	queryData := ch.query()
@@ -34,7 +52,7 @@ func (ch *guitar) Main(args *Body_args) {
 		for _, items := range queryData {
 			rand.Seed(time.Now().UnixNano())
 			if rand.Intn(5) == 2 {
-				if ch.DATA_QUERY == items.Query { // 避免一个问题重复提问
+				if ch.is_repetition(items.Query) { // 避免一个问题重复提问
 					continue
 				}
 				ch.show_query(args, items)
