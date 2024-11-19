@@ -2,6 +2,7 @@ package vender
 
 import (
 	"fmt"
+	"strings"
 )
 
 // date: 2024/11/18
@@ -32,7 +33,13 @@ func (ch *guitar) query() (queryData []Body_query) {
 			Answer: v,
 			Type:   QUERY_SCALE,
 		})
+		queryData = append(queryData, Body_query{
+			Query:  fmt.Sprintf("%s 组成了______和弦: ", strings.Trim(v.A+","+v.B+","+v.C, ",")),
+			Answer: k,
+			Type:   QUERY_SCALE_X,
+		})
 	}
+
 	// 和弦构空弦音
 	for k, v := range ch.DATA_CHORD_EMPTY {
 		queryData = append(queryData, Body_query{

@@ -12,6 +12,8 @@ func (ch *guitar) show_query(args *Body_args, items Body_query) {
 	ch.DATA_QUERY = items.Query
 	if items.Type == QUERY_SCALE && args.Chord_Scale == true { // 和弦构成音
 		ch.chord_scanle_verfy(items.Query, items.Answer.(Body_Chord_Scale))
+	} else if items.Type == QUERY_SCALE_X && args.Chord_Scale == true { // 和弦构成音
+		ch.answer_print(items.Query, items.Answer.(string))
 	} else if items.Type == QUERY_LEVEL && args.Chord_Level == true { // 和弦级别
 		ch.answer_print(items.Query, items.Answer.(string))
 	} else if items.Type == QUERY_EMPTY && args.Chord_Empty == true { // 和弦级别
@@ -26,8 +28,9 @@ func (ch *guitar) show_query(args *Body_args, items Body_query) {
 }
 
 func (ch *guitar) Main(args *Body_args) {
+	queryData := ch.query()
 	for {
-		for _, items := range ch.query() {
+		for _, items := range queryData {
 			rand.Seed(time.Now().UnixNano())
 			if rand.Intn(5) == 2 {
 				if ch.DATA_QUERY == items.Query { // 避免一个问题重复提问

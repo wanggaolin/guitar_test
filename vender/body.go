@@ -3,9 +3,10 @@ package vender
 // date: 2024/10/30
 // email: brach@lssin.com
 
-const QUERY_LEVEL = "CHORD_LEVEL" // 和弦级别问答
-const QUERY_SCALE = "CHORD_SCALE" // 和弦级构成音
-const QUERY_EMPTY = "CHORD_EMPTY" // 空弦音
+const QUERY_LEVEL = "CHORD_LEVEL"     // 和弦级别问答
+const QUERY_SCALE = "CHORD_SCALE"     // 和弦级构成音
+const QUERY_SCALE_X = "CHORD_SCALE_X" // 和弦级构成音
+const QUERY_EMPTY = "CHORD_EMPTY"     // 空弦音
 
 // 和弦级别
 type Body_Chord_Level struct {
