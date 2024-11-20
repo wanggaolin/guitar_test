@@ -1,12 +1,53 @@
 package vender
 
 import (
+	"bufio"
 	"fmt"
+	"github.com/wanggaolin/go_lib/w"
+	"golang.org/x/term"
+	"os"
+	"runtime"
 	"strings"
 )
 
 // date: 2024/11/18
 // email: brach@lssin.com
+
+func (ch *guitar) __print_query_linux() (answer string) {
+	oldState, err := term.MakeRaw(int(os.Stdin.Fd()))
+	if err != nil {
+		fmt.Println("无法进入原始模式：", err)
+		return
+	}
+	defer term.Restore(int(os.Stdin.Fd()), oldState)
+	term := term.NewTerminal(os.Stdin, "")
+	input, err := term.ReadLine()
+	if err != nil {
+		if err.Error() == "EOF" {
+			w.ExitSuccess()
+		}
+		fmt.Println("读取输入时出错：", err)
+		return
+	}
+	answer = input
+	return
+}
+
+func (ch *guitar) print_query(query string) (answer string) {
+	ch.DATA_QUERY = append(ch.DATA_QUERY, query)
+	ch.NUMBER = ch.NUMBER + 1
+	tips := fmt.Sprintf("第%d题: ", ch.NUMBER)
+	query = tips + query
+	fmt.Print(query)
+	if runtime.GOOS == "windows" {
+		reader := bufio.NewReader(os.Stdin)
+		input, _ := reader.ReadString('\n')
+		answer = input[:len(input)-1]
+	} else {
+		answer = ch.__print_query_linux()
+	}
+	return strings.TrimSpace(answer)
+}
 
 // 生成在线问题
 func (ch *guitar) query() (queryData []Body_query) {

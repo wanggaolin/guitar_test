@@ -13,7 +13,7 @@ var (
 	GoVersion   string
 	ReleaseTime string
 	Auchar      string = ""
-	AppVersion  string = "guitar-tools/0.2"
+	AppVersion  string = "guitar-tools/0.3"
 	run_args    *vender.Body_args
 )
 

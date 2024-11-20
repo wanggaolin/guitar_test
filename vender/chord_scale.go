@@ -10,9 +10,7 @@ import (
 // email: brach@lssin.com
 
 func (ch *guitar) chord_scanle_verfy(query string, v Body_Chord_Scale) {
-	var return_name string
-	fmt.Print(ch._add_tips(query))
-	fmt.Scanln(&return_name)
+	return_name := ch.print_query(query)
 	arry := w.GoString.CommaStringFormatArry(return_name)
 	if len(arry) < 3 {
 		arry = append(arry, "")
