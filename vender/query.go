@@ -13,6 +13,12 @@ import (
 // date: 2024/11/18
 // email: brach@lssin.com
 
+func exitWithRestore(fd int, oldState *term.State, code int) {
+	term.Restore(fd, oldState)
+	fmt.Println("")
+	os.Exit(code)
+}
+
 func (ch *guitar) __print_query_linux() (answer string) {
 	oldState, err := term.MakeRaw(int(os.Stdin.Fd()))
 	if err != nil {
@@ -24,7 +30,7 @@ func (ch *guitar) __print_query_linux() (answer string) {
 	input, err := term.ReadLine()
 	if err != nil {
 		if err.Error() == "EOF" {
-			w.ExitSuccess()
+			exitWithRestore(int(os.Stdin.Fd()), oldState, 0)
 		}
 		w.Log.Log_error("read error:", err.Error())
 		return
