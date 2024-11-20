@@ -17,11 +17,11 @@ Flags:
   -e, --empty     吉他空弦音测试
   -h, --help      help for guitar-tools
   -l, --level     和弦级数问答测试
-  -s, --scale     和弦够成音问答测试
+  -s, --scale     和弦构成音问答测试
   -v, --version   查询版本号
 ```
 
-### 运行
+### 示例
 ```text
 第1题: 请输入 G调 1级和弦是______: g
 回答正确
@@ -45,4 +45,10 @@ Flags:
 回答正确
 第11题: 请输入 G调 EM和弦是_____级和弦: 
 错误,正确答案是: 6
+```
+
+## 运行
+### 如果不想安装golang环境,可以直接下载`dist`下构建好的包
+```shell
+go run main.go -h
 ```

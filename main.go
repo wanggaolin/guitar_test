@@ -33,7 +33,7 @@ func main() {
 	run_args = &vender.Body_args{}
 	rootCmd.PersistentFlags().BoolVarP(&run_args.Version, "version", "v", false, "查询版本号")
 	rootCmd.PersistentFlags().BoolVarP(&run_args.Chord_Level, "level", "l", false, "和弦级数问答测试")
-	rootCmd.PersistentFlags().BoolVarP(&run_args.Chord_Scale, "scale", "s", false, "和弦够成音问答测试")
+	rootCmd.PersistentFlags().BoolVarP(&run_args.Chord_Scale, "scale", "s", false, "和弦构成音问答测试")
 	rootCmd.PersistentFlags().BoolVarP(&run_args.Chord_Empty, "empty", "e", false, "吉他空弦音测试")
 	//rootCmd.PersistentFlags().BoolVarP(&run_args.Query, "query", "q", false, "生成在线问答")
 	rootCmd.PersistentFlags().BoolVarP(&run_args.ShowAll, "all", "a", true, "题库随机问答测试")

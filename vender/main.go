@@ -25,11 +25,11 @@ func (ch *guitar) show_query(args *Body_args, items Body_query) {
 		}
 	}
 }
+
+// 判断问题与最斤3次是否问过
 func (ch *guitar) is_repetition(x string) bool {
 	l := len(ch.DATA_QUERY)
-	if l == 0 {
-		return false
-	} else if l < 3 {
+	if l < 3 {
 		for _, items := range ch.DATA_QUERY {
 			if items == x {
 				return true
