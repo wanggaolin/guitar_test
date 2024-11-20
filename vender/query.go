@@ -16,7 +16,7 @@ import (
 func (ch *guitar) __print_query_linux() (answer string) {
 	oldState, err := term.MakeRaw(int(os.Stdin.Fd()))
 	if err != nil {
-		fmt.Println("无法进入原始模式：", err)
+		w.Log.Log_error("mod error:", err.Error())
 		return
 	}
 	defer term.Restore(int(os.Stdin.Fd()), oldState)
@@ -26,7 +26,7 @@ func (ch *guitar) __print_query_linux() (answer string) {
 		if err.Error() == "EOF" {
 			w.ExitSuccess()
 		}
-		fmt.Println("读取输入时出错：", err)
+		w.Log.Log_error("read error:", err.Error())
 		return
 	}
 	answer = input
